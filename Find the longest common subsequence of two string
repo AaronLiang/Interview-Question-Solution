@@ -1,0 +1,23 @@
+http://www.careercup.com/question?id=15501979
+
+Find the longest common subsequence of two string
+
+
+
+
+
+
+-----------------------------------------------------------------
+Let string 1 is A[nx1] and string 2 is B[mx1]
+Now take M[n+1,m+1];
+for i = 0 to n
+   M[i][0] = 0;
+for j = 0 to m
+   M[0][j] = 0;
+for i = 1 to n
+    for j  = 1 to m
+         if A[i-1] = B[j-1]
+             M[i][j] = 1 + M[i-1][j-1];
+         else
+             M[i][j] = Max(M[i-1][j],M[i][j-1])
+output M[n][m];
