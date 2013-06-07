@@ -1,0 +1,4 @@
+File file = new File(fileName);
+FileReader fileReader = new FileReader(file);
+BufferedReader bufRead = new BufferedReader(fileReader);
+lineNext = bufRead.readLine())
