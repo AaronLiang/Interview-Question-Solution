@@ -1,0 +1,20 @@
+http://www.careercup.com/question?id=15474731
+
+Write algorithm (code) to created a minimal height binary tree from a sorted array.
+
+--------------------------------------------------------------------------------
+
+/// right is one past the array.
+/// Creates a tree of array[left,..., right-1].
+Tree * CreateTree(int *array, int left, int right) {
+  
+    if (left >= right) throw InternalErrorException("...");
+    if (left == right-1) return new Tree(array[left]);
+   
+    mid = (right - left)/2 + left;
+  
+    Tree *tree = new Tree(array[mid]);
+    tree->Left = CreateTree(array, left, mid);
+    tree->Right = CreateTree(array, mid+1, right);
+    return tree;
+}
