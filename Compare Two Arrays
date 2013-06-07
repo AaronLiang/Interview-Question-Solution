@@ -1,0 +1,53 @@
+http://www.careercup.com/question?id=19128691
+
+You are given two arrays find if they are equal 
+
+I gave solution using Hash table and he was fine with it
+
+-----------------------------------------------------------------------------------
+
+AMZ 10
+------
+
+Input:  two arrays
+Output: boolean stating their equality
+
+Assumptions:
+- Equal in length
+- Equal in values
+  - What if values are custom classes?
+    - Trust that their equality function works?
+    - Are the objects comparable?
+    
+Braintorm:
+1.
+- If length is equal
+  - Sort both arrays, then compare each element
+
+O(nlogn) time, O(1) space
+
+2.
+- Add first array to hashMap
+- Check if each element from 2nd array exists in hashMap, if it does, remove from hashMap
+- If hashMap is empty at the end, arrays are equal
+
+O(n) time, O(n) space
+
+public boolean areEqual(T[] a, T[] b) {
+    if(a.length != b.length)
+        return false;
+    
+    if(!a.getClass().equals(b.getClass())
+        return false;
+    
+    Arrays.sort(a /* May need to pass comparator */);
+    Arrays.sort(b /* May need to pass comparator */);
+         
+    for(int i = 0; i < a.length; i++) {
+        if(!a[i].equals(b[i]))
+            return false;
+        //Can use a[i].compareTo(b[i]) != 0 if that's implemented
+        //Or whichever equality/comparison function is appropriate
+    }
+    return true;
+}
