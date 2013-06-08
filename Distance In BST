@@ -18,3 +18,39 @@ return depth(root, val1) + depth(root,val2)
 }
 Note: function depth(root, val) returns the depth of sub tree. Interviewer is ok about the depth of tree functionality but he asked me if Distance(Node root, int val1, int val2) implementation is correct. 
 Complexity is O(logN)
+
+
+------------------------------------------------------------------------------------------------------------------
+
+private static int findDistance(Node root, int val1, int val2)
+ {
+  List path1 = new ArrayList();
+  List path2 = new ArrayList();
+  findPath(root, val1, path1);
+  findPath(root, val2, path2);
+  if (path1.size() == 0 || path2.size() == 0)
+   return -1;
+  int index = 0;
+  for (; index < path1.size(); ++index)
+  {
+   if (path1.get(index) != path2.get(index))
+    break;
+  }
+  return path1.size() + path2.size() - 2 * index;
+ }
+
+ private static boolean findPath(Node root, int value, List path)
+ {
+  if (root == null)
+   return false;
+  path.add(root);
+  if (root.value == value)
+  {
+   return true;
+  }
+  if (findPath(root.left, value, path)
+    || findPath(root.right, value, path))
+   return true;
+  path.remove(root);
+  return false;
+ }
