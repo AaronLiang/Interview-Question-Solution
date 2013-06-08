@@ -1,0 +1,28 @@
+http://leetcode.com/2010/09/serializationdeserialization-of-binary.html
+
+
+void readBinaryTreeHelper(TreeNode root, boolean left, Reader reader) {//java version
+  String token = reader.nextToken();
+  if (token == '#') {
+    return;
+  } else {
+    TreeNode newNode = new TreeNode(Integer.parseInteger(token));
+    if (left) 
+      root.left = newNode;
+    else 
+      root.right = newNode;
+    readBinaryTreeHelper(newNode, true, reader);
+    readBinaryTreeHelper(newNode, false, reader);
+  }
+ 
+TreeNode readBinaryTree(Reader reader) {
+  String token = reader.nextToken();
+  if (token == '#') {
+    return null;
+  else {
+    Node root = new TreeNode(Integer.parseInteger(token));
+    readBinaryTreeHelper(root, true, reader);
+    readBinaryTreeHelper(root, false, reader);
+    return root;
+  }
+}
