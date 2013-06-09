@@ -1,0 +1,26 @@
+
+ Given an integer set of numbers, print all the subsets.
+ For some reason the interviewer asked to print the supersets,
+ but what he means is subsets.  
+-------------------------------------------------------------------s
+Use bitmasks:
+
+int allMasks = (1 << N);
+for (int i = 1; i < allMasks; i++)
+{
+    for (int j = 0; j < N; j++)
+        if ((i & (1 << j)) > 0) //The j-th element is used
+           System.out.print((j + 1) + " ");
+
+    System.out.println();
+}
+Here are all bitmasks:
+
+1 = 001 = {1}
+2 = 010 = {2}
+3 = 011 = {1, 2}
+4 = 100 = {3}
+5 = 101 = {1, 3}
+6 = 110 = {2, 3}
+7 = 111 = {1, 2, 3}
+You know in binary the first bit is the rightmost.
