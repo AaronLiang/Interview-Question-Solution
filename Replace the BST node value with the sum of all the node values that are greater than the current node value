@@ -18,6 +18,27 @@ public int sumOfAllGreater(TreeNode root, int i){
 		return tmp;
 	}
 ===========================================================================
+1. Inorder travarsal.
+2. currnode --> data += prevNode-->data
+
+// Trying to write the code, only bad part is the global variable, in    
+//Java though we can use as private variable what I have tried here.
+private Node prevNode = null;
+public void PostOrderSum( Node node ) {
+          if( node == null ) return;
+
+          PostOrderSum( node.right );
+          PostOrderSum( node.left );
+          
+          if( prevNode  != null ) {
+                     node.data += prevNode.data;
+           }
+
+          prevNode = node;
+     
+}
+
+===========================================================================
 
 
 
