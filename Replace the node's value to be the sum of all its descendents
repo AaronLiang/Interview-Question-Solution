@@ -1,4 +1,3 @@
-
 Replace the node's value to be the sum of all its descendents
 http://stackoverflow.com/questions/5963541/replace-the-nodes-value-to-be-the-sum-of-all-its-descendents
 
@@ -32,6 +31,32 @@ are allowed to add a new originalItem entry in the node, you can
 store the original value there, use my solution above and then 
 run a final pass which subtracts the value of originalItem from 
 item for every node in the tree:
+
+????????How about use tow trees traversal together??
+
+=============================================================
+
+public void sumNode(TNode<E> root, TNode<E> ori) {
+    // For empty trees, do nothing.
+    if (root == null)
+        return;
+
+    // Update the left subtree recursively.
+    sumNode(root.left, ori.left);
+
+    // Update the right subtree recursively.
+    sumNode(root.right, ori.right);
+
+    // At this point, all the elements in the left and right
+    // subtrees are already summed up. Now we update the
+    // sum in the root element itself.
+    if (root.left != null)
+        root.item = root.item + root.left.item - ori.item;
+    if (root.right != null)
+        root.item = root.item + root.right.item - ori.item;
+}
+
+=============================================================
 
 private void preprocessTree(TNode<E> root) {
     if (root == null)
