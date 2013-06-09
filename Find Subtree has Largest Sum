@@ -1,0 +1,38 @@
+http://www.careercup.com/question?id=12868663
+
+
+Given a binary tree, every node has a int value, 
+return the root node of subtree with the largest 
+sum up value. Java is more preferable. 
+Caution: the return should be a node, not a integer!
+
+
+
+class A {
+   static class Result {
+      int value;
+      Node node;
+   } 
+   
+   int sumOfTree(Node root, Result max) {
+      if (root == null) {
+         return 0;
+      }
+      int leftR = sumOfTree(root.left, max);
+      int rightR = sumOfTree(root.right, max);
+      int sum = leftR + rightR + root.value;
+      if (sum > max.value) {
+         max.value = sum;
+         max.node = root;
+      } 
+      return sum;
+   }
+   
+   public static void main(String[] args) {
+      Node root = ...; //create a tree
+      Result max = new Result(Integer.MIN, root);
+      new A().sumOfTree(root, max);
+      max.value; //max value
+      max.node; //max node
+   }
+}
