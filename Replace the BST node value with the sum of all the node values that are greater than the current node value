@@ -35,7 +35,7 @@ public void PostOrderSum( Node node ) {
            }
 
           prevNode = node;
-     
+     	  return;
 }
 --------------------------------------
 void newBST(TreeNode node,int sum){
