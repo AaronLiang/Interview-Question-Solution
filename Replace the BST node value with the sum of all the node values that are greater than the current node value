@@ -18,7 +18,7 @@ public int sumOfAllGreater(TreeNode root, int i){
 		return tmp;
 	}
 ===========================================================================
-1. Inorder travarsal.
+1. Reverse Inorder travarsal.
 2. currnode --> data += prevNode-->data
 
 // Trying to write the code, only bad part is the global variable, in    
@@ -37,6 +37,15 @@ public void PostOrderSum( Node node ) {
           prevNode = node;
      
 }
+--------------------------------------
+void newBST(TreeNode node,int sum){
+        if(node==null) return;
+        newBST(node.right,sum);
+        sum=sum+node.data;
+        node.data=sum;
+        newBST(node.left,sum);
+}
+--------------------------------------
 
 ===========================================================================
 
