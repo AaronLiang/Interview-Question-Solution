@@ -1,0 +1,70 @@
+
+Replace the node's value to be the sum of all its descendents
+http://stackoverflow.com/questions/5963541/replace-the-nodes-value-to-be-the-sum-of-all-its-descendents
+
+If you want to include the original value of the node in the sum, then this is very easy with recursion:
+
+public void sumNode(TNode<E> root) {
+    // For empty trees, do nothing.
+    if (root == null)
+        return;
+
+    // Update the left subtree recursively.
+    sumNode(root.left);
+
+    // Update the right subtree recursively.
+    sumNode(root.right);
+
+    // At this point, all the elements in the left and right
+    // subtrees are already summed up. Now we update the
+    // sum in the root element itself.
+    if (root.left != null)
+        root.item += root.left.item;
+    if (root.right != null)
+        root.item += root.right.item;
+}
+If you do not want to include the original value, then a single 
+recursive pass is not enough because by the time you calculate 
+the value of a non-leaf node N with two leaves L1 and L2, the 
+values in L1 and L2 have already been updated to zeros, so you 
+cannot use the original values of L1 and L2 to store N. If you 
+are allowed to add a new originalItem entry in the node, you can 
+store the original value there, use my solution above and then 
+run a final pass which subtracts the value of originalItem from 
+item for every node in the tree:
+
+private void preprocessTree(TNode<E> root) {
+    if (root == null)
+        return;
+
+    preprocessTree(root.left);
+    preprocessTree(root.right);
+    root.originalItem = root.item;
+}
+
+private void processTree(TNode<E> root) {
+    if (root == null)
+        return;
+
+    processTree(root.left);
+    processTree(root.right);
+    if (root.left != null)
+        root.item += root.left.item;
+    if (root.right != null)
+        root.item += root.right.item;
+}
+
+private void postprocessTree(TNode<E> root) {
+    if (root == null)
+        return;
+
+    postprocessTree(root.left);
+    postprocessTree(root.right);
+    root.item -= root.originalItem;
+}
+
+public void sumTree(TNode<E> root) {
+    preprocessTree(root);
+    processTree(root);
+    postprocessTree(root);
+}
