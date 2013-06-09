@@ -1,1 +1,14 @@
 http://stackoverflow.com/questions/5455794/removing-whitespace-from-strings-in-java
+
+
+http://stackoverflow.com/questions/2932392/java-how-to-replace-2-or-more-spaces-with-single-space-in-string-and-delete-lead
+
+
+
+
+_+ : any sequence of spaces at the beginning of the string
+Match and replace with $1, which captures the empty string
+_+$ : any sequence of spaces at the end of the string
+Match and replace with $1, which captures the empty string
+(_)+ : any sequence of spaces that matches none of the above, meaning it's in the middle
+Match and replace with $1, which captures a single space
