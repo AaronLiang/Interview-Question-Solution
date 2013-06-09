@@ -1,0 +1,39 @@
+Replace the BST node value with the sum of all the node values that are greater than the current node value
+
+http://www.careercup.com/question?id=13394676
+
+
+
+
+
+I guess from the given node in BST, there are two possible
+points where the value of the nodes are bigger than the given node: 
+1. the right child node and its children/tree 
+2. the parent node and the parent's right children where 
+the the given node is a node located in the left tree of that parent node. 
+
+So here is the simple code to do so:
+
+
+public void replace(Node node) {
+           if (node == null) return;
+           if (node.right != null) {
+                 node.value = sum(node.right);
+           }
+
+            Node parent = node.parent;
+            while (parent != null && node == parent.right) {
+               //keep looping until it reaches a parent where the given node is located on the left sub tree
+                node = node.parent;
+                parent = node.parent;
+            }
+
+            if (parent != null) {
+                   node.value += parent.value + sum(parent.right);
+            }
+     }
+
+     private int sum(Node node) {
+          if (node == null) return 0;
+          return node.value + sum(node.left) + sum(node.right);
+     }
