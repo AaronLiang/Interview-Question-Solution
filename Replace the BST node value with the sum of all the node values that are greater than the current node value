@@ -2,6 +2,24 @@ Replace the BST node value with the sum of all the node values that are greater 
 
 http://www.careercup.com/question?id=13394676
 
+===========================================================================
+public int sumOfAllGreater(TreeNode root, int i){
+           	if(root == null){
+			return i;
+		}
+		else if(root.leftChild == null && root.rightChild == null){
+			root.data += i;
+			return root.data;
+		}
+		
+		int tmp = sumOfAllGreater(root.rightChild, i);
+		root.data += tmp;
+		tmp = sumOfAllGreater(root.leftChild, root.data);
+		return tmp;
+	}
+===========================================================================
+
+
 
 
 
