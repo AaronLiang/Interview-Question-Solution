@@ -1,0 +1,27 @@
+public String reverse(String str){
+  if(str == null | str.equals("")) return str;
+  
+  char[] ch = str.toCharArray();
+  int length = ch.length;
+  for(int i = 0; i < length/2; i++){
+    char temp = char[i];
+    char[i] = char[length - i -1];
+    char[length - i -1] = temp;
+  }
+  
+  for(int i = 0; i < length; i++){
+    int current = i;
+    while(i < length && ch[i] != ' '){
+      i++; //find the next space;
+    }
+    for(int j = current; j < i; i++){
+      char temp = char[j];
+      char[j] = char[i - current -1];
+      char[i - current -1] = temp;
+    }
+  
+  }
+  
+  return ch.toString();
+  
+}
