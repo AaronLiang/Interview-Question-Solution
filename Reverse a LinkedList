@@ -7,7 +7,7 @@ What is the reverse of null (the empty list)? null.
 What is the reverse of a one element list? the element.
 What is the reverse of an n element list? the reverse of the second element on followed by the first element.
 --------------------------------------------
-
+//recursion
 public ListNode Reverse(ListNode list)
 {
     if (list == null) return null; // first question
@@ -29,4 +29,23 @@ public ListNode Reverse(ListNode list)
     secondElem.Next = list;
 
     return reverseRest;
+}
+-----------------------------------------------------
+//while loop
+public ListNode reverse(ListNode head){
+    if(head == null) return null;
+    if(head.next == null) return head;
+    
+    ListNode l = null;// node which has been reversed;
+    ListNode c = head;// current node which need to reverse;
+    ListNode r = c.next;// r keep the one after current;
+    
+    while(r != null){
+        c.next = l;
+        l = c;
+        c = r;
+        r = c.next;
+    }
+    c.next = l; //bug here, after while loop , shold point last to left;
+    return c;
 }
