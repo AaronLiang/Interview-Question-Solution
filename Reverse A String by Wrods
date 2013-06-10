@@ -14,7 +14,7 @@ public String reverse(String str){
     while(i < length && ch[i] != ' '){
       i++; //find the next space;
     }
-    for(int j = current; j < i; i++){
+    for(int j = current; j < i; j++){//how to handler more than one space
       char temp = char[j];
       char[j] = char[i - current -1];
       char[i - current -1] = temp;
