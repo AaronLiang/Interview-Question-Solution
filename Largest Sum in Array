@@ -1,0 +1,16 @@
+public int largestSum(int[] array){
+  int sum = 0;
+  int maxsum = 0;
+  
+  for(int i = 0; i < array.length; i++){
+    sum += array[i];
+    
+    if(maxsum < sum)
+      maxsum = sum;
+      
+    if(sum < 0)
+      sum = 0;
+  }
+  
+  return maxsum;
+}
