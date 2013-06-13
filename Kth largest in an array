@@ -1,0 +1,13 @@
+http://stackoverflow.com/questions/251781/how-to-find-the-kth-largest-element-in-an-unsorted-array-of-length-n-in-on
+
+A quick Google on that ('kth largest element array') returned this: http://discuss.joelonsoftware.com/default.asp?interview.11.509587.17
+
+"Make one pass through tracking the three largest values so far." (it was specifically for 3d largest)
+and..
+
+Build a heap/priority queue.  O(n)
+Pop top element.  O(log n)
+Pop top element.  O(log n)
+Pop top element.  O(log n)
+
+Total = O(n) + 3 O(log n) = O(n)
