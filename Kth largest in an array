@@ -11,3 +11,11 @@ Pop top element.  O(log n)
 Pop top element.  O(log n)
 
 Total = O(n) + 3 O(log n) = O(n)
+
+
+PriorityQueue<Patient> patientQueue = new PriorityQueue<Patient>(10, new Comparator<patient>() {
+        public int compare(Patient patient1, Patient patient2) {
+            return (patient1.isEmergencyCase() == patient2.isEmergencyCase()) ? (Integer.valueOf(patient1.getId()).compareTo(patient2.getId()))
+                                                                              : (patient1.isEmergencyCase() ? -1 : 1);
+        }
+    });
